@@ -3,7 +3,7 @@ import React from "react";
 export default function Button() {
   return (
     <a href="/cart.html" className="button button--cart">
-      <span>520 ₽</span>
+      <span>520 UAH</span>
       <div className="button__delimiter"></div>
       <svg
         width="18"
