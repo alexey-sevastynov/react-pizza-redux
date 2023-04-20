@@ -44,10 +44,13 @@ function SortPopup({ sorts }) {
     </div>
   ) : null;
 
+  const stylesSvg = visiblePopup ? "rotated" : "";
+
   return (
     <div className="sort" ref={sortRef}>
       <div className="sort__label">
         <svg
+          className={stylesSvg}
           width="10"
           height="6"
           viewBox="0 0 10 6"
