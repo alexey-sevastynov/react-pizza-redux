@@ -35,9 +35,7 @@ import React from "react";
 //   }
 // }
 
-function Categories({ onClickItem }) {
-  const categories = ["Meat", "Vegan", "Grill", "Spicy"];
-
+function Categories({ categories }) {
   const [activeItem, setItemActive] = React.useState(null);
 
   const onSelectItem = (index) => {

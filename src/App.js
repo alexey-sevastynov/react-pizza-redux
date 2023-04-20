@@ -3,6 +3,9 @@ import Header from "./components/Header/Header";
 import SortPopup from "./components/SortPopup/SortPopup";
 
 function App() {
+  const sorts = ["popularity", "price", "alphabet"];
+  const categories = ["Meat", "Vegan", "Grill", "Spicy"];
+
   return (
     <>
       <div className="wrapper">
@@ -11,8 +14,8 @@ function App() {
         <div className="content">
           <div className="container">
             <div className="content__top">
-              <Categories />
-              <SortPopup />
+              <Categories categories={categories} />
+              <SortPopup sorts={sorts} />
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
