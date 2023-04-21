@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import propTypes from "prop-types";
+
 function PizzaBlock({ title, imageUrl, types, sizes, price }) {
   const availableNames = ["thin", "traditional"];
 
@@ -71,5 +73,14 @@ function PizzaBlock({ title, imageUrl, types, sizes, price }) {
     </div>
   );
 }
+
+PizzaBlock.propTypes = {
+  title: propTypes.string.isRequired,
+  imageUrl: propTypes.string.isRequired,
+  types: propTypes.array.isRequired,
+  // sizes: [26,30,40] in array only number. see below code
+  sizes: propTypes.arrayOf(propTypes.number).isRequired,
+  price: propTypes.number,
+};
 
 export default PizzaBlock;
