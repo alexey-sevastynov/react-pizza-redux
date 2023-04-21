@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import axios from "axios";
 
 import Header from "./components/Header/Header";
 
@@ -14,11 +15,17 @@ function App() {
   const [pizzas, setPizzas] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/db.json").then((response) =>
-      response.json().then((json) => {
-        setPizzas(json.pizzas);
-      })
-    );
+    //____________AXIOS
+    axios
+      .get("http://localhost:3000/db.json")
+      .then(({ data }) => setPizzas(data.pizzas));
+
+    //_____________FETCH
+    // fetch("http://localhost:3000/db.json").then((response) =>
+    //   response.json().then((json) => {
+    //     setPizzas(json.pizzas);
+    //   })
+    // );
   }, []);
 
   return (
