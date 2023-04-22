@@ -9,7 +9,11 @@ import BasketPage from "./page/basketPage/BasketPage";
 import { useEffect, useState } from "react";
 
 function App() {
-  const sorts = ["popularity", "price", "alphabet"];
+  const sorts = [
+    { name: "popularity", type: "popular" },
+    { name: "price", type: "price" },
+    { name: "alphabet", type: "alphabet" },
+  ];
   const categories = ["Meat", "Vegan", "Grill", "Spicy"];
 
   const [pizzas, setPizzas] = useState([]);
