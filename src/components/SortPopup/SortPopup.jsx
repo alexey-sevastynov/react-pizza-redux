@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-function SortPopup({ sorts }) {
+const SortPopup = React.memo(function SortPopup({ sorts }) {
   const [visiblePopup, setVisiblePopup] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState(0);
 
@@ -13,7 +13,6 @@ function SortPopup({ sorts }) {
   };
 
   const handleOutsideClick = (e) => {
-    console.log(e);
     if (!e.composedPath().includes(sortRef.current)) {
       setVisiblePopup(false);
     }
@@ -68,6 +67,6 @@ function SortPopup({ sorts }) {
       {showPopup}
     </div>
   );
-}
+});
 
 export default SortPopup;

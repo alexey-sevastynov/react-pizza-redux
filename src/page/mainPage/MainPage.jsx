@@ -5,21 +5,25 @@ import SortPopup from "../../components/SortPopup/SortPopup";
 import Header from "../../components/Header/Header";
 import PizzaBlock from "../../components/PizzaBlock.jsx/PizzaBlock";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { setCategory } from "../../redux/actions/filters";
 
 function MainPage({ categories, sorts }) {
-  const { pizzas } = useSelector(({ pizzas }) => {
-    return {
-      pizzas: pizzas.items,
-    };
-  });
+  //______________useDispatch
+  const dispatch = useDispatch();
+  //______________useSelector
+  const pizzas = useSelector(({ pizzas }) => pizzas.items);
 
   return (
     <>
       <div className="content">
         <div className="container">
           <div className="content__top">
-            <Categories categories={categories} />
+            <Categories
+              categories={categories}
+              onClickItem={(index) => dispatch(setCategory(index))}
+            />
             <SortPopup sorts={sorts} />
           </div>
           <h2 className="content__title">Все пиццы</h2>

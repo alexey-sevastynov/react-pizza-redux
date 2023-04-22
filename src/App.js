@@ -13,21 +13,25 @@ import BasketPage from "./page/basketPage/BasketPage";
 import { connect, useDispatch } from "react-redux";
 import { setPizzas } from "./redux/actions/pizzas";
 
+const categories = ["Meat", "Vegan", "Grill", "Spicy"];
+
+const sorts = [
+  { name: "popularity", type: "popular" },
+  { name: "price", type: "price" },
+  { name: "alphabet", type: "alphabet" },
+];
+
 function App() {
   const dispatch = useDispatch();
-
-  const sorts = [
-    { name: "popularity", type: "popular" },
-    { name: "price", type: "price" },
-    { name: "alphabet", type: "alphabet" },
-  ];
-  const categories = ["Meat", "Vegan", "Grill", "Spicy"];
 
   useEffect(() => {
     //____________AXIOS
     axios
-      .get("http://localhost:3000/db.json")
-      .then(({ data }) => dispatch(setPizzas(data.pizzas)));
+      .get("http://localhost:3001/pizzas")
+
+      .then(({ data }) => dispatch(setPizzas(data)));
+
+    console.log("+");
 
     //_____________FETCH
     // fetch("http://localhost:3000/db.json").then((response) =>
