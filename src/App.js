@@ -10,16 +10,11 @@ import Layout from "./components/Layout";
 import MainPage from "./page/mainPage/MainPage";
 import BasketPage from "./page/basketPage/BasketPage";
 
-import { connect, useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { setPizzas } from "./redux/actions/pizzas";
 
 function App() {
   const dispatch = useDispatch();
-  const { pizzas } = useSelector((state) => {
-    return {
-      pizzas: state.pizzas.items,
-    };
-  });
 
   const sorts = [
     { name: "popularity", type: "popular" },
@@ -48,9 +43,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route
             index
-            element={
-              <MainPage categories={categories} sorts={sorts} pizzas={pizzas} />
-            }
+            element={<MainPage categories={categories} sorts={sorts} />}
           />
           <Route path="basket" element={<BasketPage />} />
         </Route>

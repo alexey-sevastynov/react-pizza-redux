@@ -5,7 +5,15 @@ import SortPopup from "../../components/SortPopup/SortPopup";
 import Header from "../../components/Header/Header";
 import PizzaBlock from "../../components/PizzaBlock.jsx/PizzaBlock";
 
-function MainPage({ categories, sorts, pizzas }) {
+import { useSelector } from "react-redux";
+
+function MainPage({ categories, sorts }) {
+  const { pizzas } = useSelector(({ pizzas }) => {
+    return {
+      pizzas: pizzas.items,
+    };
+  });
+
   return (
     <>
       <div className="content">
