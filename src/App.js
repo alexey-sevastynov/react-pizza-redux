@@ -13,6 +13,8 @@ import BasketPage from "./page/basketPage/BasketPage";
 import { connect, useDispatch } from "react-redux";
 import { setPizzas } from "./redux/actions/pizzas";
 
+import { fetchPizzas } from "./redux/actions/pizzas";
+
 const categories = ["Meat", "Vegan", "Grill", "Spicy"];
 
 const sorts = [
@@ -25,20 +27,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    //____________AXIOS
-    axios
-      .get("http://localhost:3001/pizzas")
-
-      .then(({ data }) => dispatch(setPizzas(data)));
-
-    console.log("+");
-
-    //_____________FETCH
-    // fetch("http://localhost:3000/db.json").then((response) =>
-    //   response.json().then((json) => {
-    //     setPizzas(json.pizzas);
-    //   })
-    // );
+    dispatch(fetchPizzas());
   }, []);
 
   return (
