@@ -11,8 +11,8 @@ import { useDispatch } from "react-redux";
 
 const categoryNames = ["Meat", "Vegan", "Grill", "Spicy"];
 
-const sorts = [
-  { name: "popularity", type: "popular" },
+const sortNames = [
+  { name: "popular", type: "popular" },
   { name: "price", type: "price" },
   { name: "alphabet", type: "alphabet" },
 ];
@@ -26,7 +26,9 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route
             index
-            element={<MainPage categoryNames={categoryNames} sorts={sorts} />}
+            element={
+              <MainPage categoryNames={categoryNames} sortNames={sortNames} />
+            }
           />
           <Route path="basket" element={<BasketPage />} />
         </Route>

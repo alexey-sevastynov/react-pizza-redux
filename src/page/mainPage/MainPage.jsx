@@ -9,10 +9,10 @@ import PizzaBlock from "../../components/PizzaBlock.jsx/PizzaBlock";
 
 import { fetchPizzas } from "../../redux/actions/pizzas";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategory } from "../../redux/actions/filters";
+import { setCategory, setSortBy } from "../../redux/actions/filters";
 import MyLoader from "../../components/Loader/Loader";
 
-function MainPage({ categoryNames, sorts }) {
+function MainPage({ categoryNames, sortNames, onClickSortType }) {
   //______________useDispatch
   const dispatch = useDispatch();
   //______________useSelector from ../reducer/stateInitial...
@@ -29,6 +29,13 @@ function MainPage({ categoryNames, sorts }) {
     dispatch(fetchPizzas());
   }, [category]);
 
+  const onSelectCategory = React.useCallback((index) => {
+    dispatch(setCategory(index));
+  });
+
+  const onSelectSortType = React.useCallback((type) => {
+    dispatch(setSortBy(type));
+  });
   return (
     <div className="content">
       <div className="container">
@@ -36,9 +43,13 @@ function MainPage({ categoryNames, sorts }) {
           <Categories
             activeCategory={category}
             categoryNames={categoryNames}
-            onClickCategory={(index) => dispatch(setCategory(index))}
+            onClickCategory={onSelectCategory}
           />
-          <SortPopup sorts={sorts} />
+          <SortPopup
+            activeSortType={sortBy}
+            sortNames={sortNames}
+            onClickSortType={onSelectSortType}
+          />
         </div>
         <h2 className="content__title">Все пиццы</h2>
         <div className="content__items">
