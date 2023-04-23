@@ -14,7 +14,7 @@ const categoryNames = ["Meat", "Vegan", "Grill", "Spicy"];
 const sortNames = [
   { name: "popular", type: "popular" },
   { name: "price", type: "price" },
-  { name: "alphabet", type: "alphabet" },
+  { name: "alphabet", type: "title" },
 ];
 
 function App() {

@@ -31,7 +31,7 @@ const Categories = React.memo(function Categories({
 });
 
 Categories.propTypes = {
-  activeCategory: propTypes.oneOf([propTypes.number, null]),
+  // activeCategory: propTypes.oneOf([propTypes.number, null]),
   categoryNames: propTypes.arrayOf(propTypes.string),
   onClickCategory: propTypes.func,
 };

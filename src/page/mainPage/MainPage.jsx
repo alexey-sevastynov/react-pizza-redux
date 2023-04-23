@@ -20,14 +20,13 @@ function MainPage({ categoryNames, sortNames, onClickSortType }) {
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
   const { category, sortBy } = useSelector(({ filters }) => filters);
 
-  console.log(category, sortBy);
   React.useEffect(() => {
     //one times render
     // if (!pizzas.length) {
     //   dispatch(fetchPizzas());
     // }
-    dispatch(fetchPizzas());
-  }, [category]);
+    dispatch(fetchPizzas(sortBy, category));
+  }, [category, sortBy]);
 
   const onSelectCategory = React.useCallback((index) => {
     dispatch(setCategory(index));
