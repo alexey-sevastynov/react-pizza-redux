@@ -1,21 +1,15 @@
 import React from "react";
-import { useEffect, useState } from "react";
 
 import { Route, Routes } from "react-router-dom";
-import axios from "axios";
 
-import Header from "./components/Header/Header";
 import Layout from "./components/Layout";
 
 import MainPage from "./page/mainPage/MainPage";
 import BasketPage from "./page/basketPage/BasketPage";
 
-import { connect, useDispatch } from "react-redux";
-import { setPizzas } from "./redux/actions/pizzas";
+import { useDispatch } from "react-redux";
 
-import { fetchPizzas } from "./redux/actions/pizzas";
-
-const categories = ["Meat", "Vegan", "Grill", "Spicy"];
+const categoryNames = ["Meat", "Vegan", "Grill", "Spicy"];
 
 const sorts = [
   { name: "popularity", type: "popular" },
@@ -26,17 +20,13 @@ const sorts = [
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchPizzas());
-  }, []);
-
   return (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route
             index
-            element={<MainPage categories={categories} sorts={sorts} />}
+            element={<MainPage categoryNames={categoryNames} sorts={sorts} />}
           />
           <Route path="basket" element={<BasketPage />} />
         </Route>

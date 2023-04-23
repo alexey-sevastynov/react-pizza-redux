@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
 import propTypes from "prop-types";
+import MyLoader from "../Loader/Loader";
 
-function PizzaBlock({ title, imageUrl, types, sizes, price }) {
+function PizzaBlock({ title, imageUrl, types, sizes, price, isLoaded }) {
   const availableNames = ["thin", "traditional"];
 
   const [activeType, setActiveType] = useState(0);
@@ -54,6 +55,9 @@ function PizzaBlock({ title, imageUrl, types, sizes, price }) {
     </svg>
   );
 
+  if (!isLoaded) {
+    return <MyLoader />;
+  }
   return (
     <div className="pizza-block">
       <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
