@@ -1,10 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+
 export default function Button() {
+  //______________________ONE OPTION
+  // const totalPrice = useSelector(({ basket }) => basket.totalPrice);
+  // const totalCount = useSelector(({ basket }) => basket.totalCount);
+
+  //______________________TWO OPTION
+  const { totalPrice, totalCount } = useSelector(({ basket }) => ({
+    totalPrice: basket.totalPrice,
+    totalCount: basket.totalCount,
+  }));
+
   return (
     <Link to="/basket" className="button button--cart">
-      <span>520 UAH</span>
+      <span>{totalPrice} UAH</span>
       <div className="button__delimiter"></div>
       <svg
         width="18"
@@ -35,7 +47,7 @@ export default function Button() {
           strokeLinejoin="round"
         />
       </svg>
-      <span>3</span>
+      <span>{totalCount}</span>
     </Link>
   );
 }
