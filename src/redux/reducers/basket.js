@@ -19,7 +19,10 @@ const basketReducer = (state = initialState, action) => {
             ? [action.payload]
             : [...state.items[action.payload.id], action.payload],
       };
-      const allPizzas = [].concat.apply([], Object.values(newItems));
+
+      //   const allPizzas = [].concat.apply([], Object.values(newItems));
+      // _________or
+      const allPizzas = Object.values(newItems).flat();
 
       return {
         ...state,
