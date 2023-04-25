@@ -11,6 +11,7 @@ import { fetchPizzas } from "../../redux/actions/pizzas";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategory, setSortBy } from "../../redux/actions/filters";
 import MyLoader from "../../components/Loader/Loader";
+import { addPizzaToCart } from "../../redux/actions/basket";
 
 function MainPage({ categoryNames, sortNames, onClickSortType }) {
   //______________useDispatch
@@ -18,6 +19,7 @@ function MainPage({ categoryNames, sortNames, onClickSortType }) {
   //______________useSelector from ../reducer/stateInitial...
   const pizzas = useSelector(({ pizzas }) => pizzas.items);
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
+  const basketPizzas = useSelector(({ basket }) => basket.items);
   const { category, sortBy } = useSelector(({ filters }) => filters);
 
   React.useEffect(() => {
@@ -41,6 +43,12 @@ function MainPage({ categoryNames, sortNames, onClickSortType }) {
     },
     [dispatch]
   );
+
+  const handleAddPizzaToBasket = (obj) => {
+    dispatch(addPizzaToCart(obj));
+    console.log(obj);
+  };
+
   return (
     <div className="content">
       <div className="container">
@@ -60,7 +68,15 @@ function MainPage({ categoryNames, sortNames, onClickSortType }) {
         <div className="content__items">
           {isLoaded
             ? pizzas.map((pizza) => (
-                <PizzaBlock key={pizza.id} isLoaded={true} {...pizza} />
+                <PizzaBlock
+                  key={pizza.id}
+                  isLoaded={true}
+                  onClickAddPizza={handleAddPizzaToBasket}
+                  addedCount={
+                    basketPizzas[pizza.id] && basketPizzas[pizza.id].length
+                  }
+                  {...pizza}
+                />
               ))
             : Array(pizzas.length)
                 .fill(0)

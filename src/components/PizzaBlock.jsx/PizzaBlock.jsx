@@ -3,8 +3,19 @@ import React, { useState } from "react";
 import propTypes from "prop-types";
 import MyLoader from "../Loader/Loader";
 
-function PizzaBlock({ title, imageUrl, types, sizes, price, isLoaded }) {
+function PizzaBlock({
+  id,
+  title,
+  imageUrl,
+  types,
+  sizes,
+  price,
+  isLoaded,
+  onClickAddPizza,
+  addedCount,
+}) {
   const availableNames = ["thin", "traditional"];
+  const avaibleSizes = [26, 30, 40];
 
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
@@ -15,6 +26,18 @@ function PizzaBlock({ title, imageUrl, types, sizes, price, isLoaded }) {
 
   const onSelectSize = (index) => {
     setActiveSize(index);
+  };
+
+  const onAddPizza = () => {
+    const obj = {
+      id,
+      title,
+      imageUrl,
+      type: availableNames[activeType], //useState
+      size: sizes[activeSize], //useState
+      price,
+    };
+    onClickAddPizza(obj);
   };
 
   const oneType = <li className="active">{availableNames[types]}</li>;
@@ -68,11 +91,14 @@ function PizzaBlock({ title, imageUrl, types, sizes, price, isLoaded }) {
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">{price} UAH</div>
-        <div className="button button--outline button--add">
+        <button
+          className="button button--outline button--add"
+          onClick={onAddPizza}
+        >
           {svgPlus}
           <span>Добавить</span>
-          <i>2</i>
-        </div>
+          {addedCount && <i>{addedCount}</i>}
+        </button>
       </div>
     </div>
   );
@@ -85,6 +111,8 @@ PizzaBlock.propTypes = {
   // sizes: [26,30,40] in array only number. see below code
   sizes: propTypes.arrayOf(propTypes.number).isRequired,
   price: propTypes.number,
+  onAddPizza: propTypes.func,
+  addedCount: propTypes.number,
 };
 
 export default PizzaBlock;

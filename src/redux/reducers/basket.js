@@ -10,6 +10,24 @@ const basketReducer = (state = initialState, action) => {
       return { ...state, totalPrice: action.payload };
     case "SET_TOTAL_COUNT":
       return { ...state, totalCount: action.payload };
+    case "ADD_PIZZA_CART": {
+      const newItems = {
+        ...state.items,
+        [action.payload.id]:
+          //IF state.items[0] === undefined
+          !state.items[action.payload.id]
+            ? [action.payload]
+            : [...state.items[action.payload.id], action.payload],
+      };
+      const allPizzas = [].concat.apply([], Object.values(newItems));
+
+      return {
+        ...state,
+        items: newItems,
+        totalCount: allPizzas.length,
+        totalPrice: allPizzas.reduce((sum, obj) => obj.price + sum, 0),
+      };
+    }
 
     default:
       return state;
