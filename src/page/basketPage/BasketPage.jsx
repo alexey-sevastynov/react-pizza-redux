@@ -2,7 +2,12 @@ import React from "react";
 import BasketItem from "../../components/BasketItem/BasketItem";
 
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart } from "../../redux/actions/basket";
+import {
+  clearCart,
+  minusPizza,
+  plusPizza,
+  removePizza,
+} from "../../redux/actions/basket";
 import BasketEmpty from "../../components/BasketItem/BasketEmpty";
 
 function BasketPage() {
@@ -17,6 +22,19 @@ function BasketPage() {
   const onClearBasket = () => {
     if (window.confirm("You want to delete all pizzas from basket?"))
       dispatch(clearCart());
+  };
+
+  const onRemoveItem = (id) => {
+    if (window.confirm("Do you want delete?")) {
+      dispatch(removePizza(id));
+    }
+  };
+
+  const onPlusItem = (id) => {
+    dispatch(plusPizza(id));
+  };
+  const onMinusItem = (id) => {
+    dispatch(minusPizza(id));
   };
 
   const showBasket = (
@@ -99,11 +117,15 @@ function BasketPage() {
         {addedpizzas.map((objPizza) => (
           <BasketItem
             key={objPizza.id}
+            id={objPizza.id}
             title={objPizza.title}
             type={objPizza.type}
             size={objPizza.size}
             totalPrice={items[objPizza.id].totalPrice}
             totalCount={items[objPizza.id].totalCount}
+            onRemoveItem={onRemoveItem}
+            onPlusItem={onPlusItem}
+            onMinusItem={onMinusItem}
           />
         ))}
         {/* <BasketItem title="paperoni" size={26} type="think" /> */}

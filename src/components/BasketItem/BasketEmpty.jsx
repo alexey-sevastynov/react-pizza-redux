@@ -1,5 +1,6 @@
 import React from "react";
 import iconEmtyBasket from "./empty-cart.png";
+import { Link } from "react-router-dom";
 
 function BasketEmpty() {
   return (
@@ -11,9 +12,9 @@ function BasketEmpty() {
         To order pizza, go to the main page.
       </p>
       <img src={iconEmtyBasket} alt="Empty cart" />
-      <a href="/" className="button button--black">
+      <Link to="/" className="button button--black">
         <span>Come back</span>
-      </a>
+      </Link>
     </div>
   );
 }
