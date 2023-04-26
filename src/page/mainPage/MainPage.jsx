@@ -46,7 +46,6 @@ function MainPage({ categoryNames, sortNames, onClickSortType }) {
 
   const handleAddPizzaToBasket = (obj) => {
     dispatch(addPizzaToCart(obj));
-    console.log(obj);
   };
 
   return (
@@ -73,7 +72,8 @@ function MainPage({ categoryNames, sortNames, onClickSortType }) {
                   isLoaded={true}
                   onClickAddPizza={handleAddPizzaToBasket}
                   addedCount={
-                    basketPizzas[pizza.id] && basketPizzas[pizza.id].length
+                    basketPizzas[pizza.id] &&
+                    basketPizzas[pizza.id].items.length
                   }
                   {...pizza}
                 />
