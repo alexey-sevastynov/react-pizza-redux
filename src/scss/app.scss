@@ -357,6 +357,8 @@ body {
       }
     }
     &__item {
+      background-color: $background;
+      border-radius: 10px;
       position: relative;
       margin-top: 20px;
       padding: 10px 0;
