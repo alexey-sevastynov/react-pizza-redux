@@ -1,5 +1,6 @@
 import React from "react";
 import BasketItem from "../../components/BasketItem/BasketItem";
+import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -28,6 +29,21 @@ function BasketPage() {
     if (window.confirm("Do you want delete?")) {
       dispatch(removePizza(id));
     }
+  };
+
+  const succesfulOrder = () => {
+    const pizzas = Object.values(items);
+
+    alert(`Thanks your order:\n${pizzas
+      .map(
+        (pizza, id) =>
+          `${id + 1} Pizza: ${pizza.items[0].title}, ${
+            pizza.totalCount
+          } pieces = ${pizza.totalPrice} UAH\n`
+      )
+      .join("")}
+Pay please: ${totalPrice} UAH
+     `);
   };
 
   const onPlusItem = (id) => {
@@ -70,7 +86,7 @@ function BasketPage() {
               strokeLinejoin="round"
             />
           </svg>
-          Корзина
+          Basket
         </h2>
         <div className="cart__clear">
           <svg
@@ -110,7 +126,7 @@ function BasketPage() {
             />
           </svg>
 
-          <span onClick={onClearBasket}>Очистить корзину</span>
+          <span onClick={onClearBasket}>Empty trash</span>
         </div>
       </div>
       <div className="content__items">
@@ -121,6 +137,7 @@ function BasketPage() {
             title={objPizza.title}
             type={objPizza.type}
             size={objPizza.size}
+            imageUrl={objPizza.imageUrl}
             totalPrice={items[objPizza.id].totalPrice}
             totalCount={items[objPizza.id].totalCount}
             onRemoveItem={onRemoveItem}
@@ -133,10 +150,10 @@ function BasketPage() {
       <div className="cart__bottom">
         <div className="cart__bottom-details">
           <span>
-            Всего пицц: <b>{totalCount} pcs.</b>
+            Total pizzas: <b>{totalCount} pcs.</b>
           </span>
           <span>
-            Сумма заказа: <b>{totalPrice} UAH</b>
+            Order price: <b>{totalPrice} UAH</b>
           </span>
         </div>
         <div className="cart__bottom-buttons">
@@ -160,10 +177,12 @@ function BasketPage() {
               />
             </svg>
 
-            <span>Вернуться назад</span>
+            <Link to="/">
+              <span>Come back</span>
+            </Link>
           </a>
-          <div className="button pay-btn">
-            <span>Оплатить сейчас</span>
+          <div onClick={succesfulOrder} className="button pay-btn">
+            <span>Pay now</span>
           </div>
         </div>
       </div>

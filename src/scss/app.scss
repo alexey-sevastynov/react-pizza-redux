@@ -28,7 +28,7 @@ body {
   &__items {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   &__top {
@@ -109,6 +109,7 @@ body {
 
   &__item {
     display: flex;
+
     width: 100%;
     border-top: 1px solid $gray-line;
     padding-top: 30px;
@@ -308,6 +309,136 @@ body {
       margin: 0 auto;
       font-weight: 600;
       font-size: 18px;
+    }
+  }
+}
+
+@media (max-width: 974px) {
+  .cart {
+    &__item {
+      &-img {
+        width: 15%;
+      }
+
+      &-info {
+        width: 35%;
+      }
+
+      &-count {
+        width: 20%;
+      }
+
+      &-price {
+        width: 26%;
+      }
+
+      &-remove {
+        width: 4%;
+      }
+    }
+  }
+}
+
+@media (max-width: 674px) {
+  body {
+    padding: 20px 0;
+  }
+
+  .wrapper {
+    width: calc(100vw - 40px);
+  }
+
+  .cart {
+    &--empty {
+      width: 360px;
+      img {
+        width: 200px;
+        margin: 25px auto 30px;
+      }
+    }
+    &__item {
+      position: relative;
+      margin-top: 20px;
+      padding: 10px 0;
+      flex-direction: column;
+
+      &-img {
+        justify-content: center;
+        margin-right: 0px;
+        width: 100%;
+        order: 1;
+
+        img {
+          width: 250px;
+          height: 250px;
+        }
+      }
+
+      &-info {
+        align-items: center;
+        order: 0;
+        width: 100%;
+        margin-bottom: 15px;
+
+        h3 {
+          width: 220px;
+          text-align: center;
+        }
+      }
+
+      &-count {
+        margin-top: 15px;
+        justify-content: center;
+        width: 100%;
+        order: 2;
+
+        b {
+          padding: 0 20px;
+        }
+      }
+
+      &-price {
+        margin-top: 15px;
+        width: 100%;
+        order: 3;
+      }
+
+      &-remove {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        transform: translateX(-100%);
+        display: block;
+        align-items: unset;
+        justify-content: unset;
+        width: none;
+      }
+    }
+
+    &__bottom {
+      &-details {
+        span {
+          width: 130px;
+          text-align: center;
+          font-size: 22px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  body {
+    padding: 10px 0;
+  }
+
+  .wrapper {
+    width: calc(100vw - 20px);
+  }
+
+  .cart {
+    &--empty {
+      width: 320px;
     }
   }
 }

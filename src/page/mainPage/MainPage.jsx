@@ -63,7 +63,9 @@ function MainPage({ categoryNames, sortNames, onClickSortType }) {
             onClickSortType={onSelectSortType}
           />
         </div>
-        <h2 className="content__title">Все пиццы</h2>
+        <h2 className="content__title">
+          {`${categoryNames[category] || "All"} Pizzas`}
+        </h2>
         <div className="content__items">
           {isLoaded
             ? pizzas.map((pizza) => (

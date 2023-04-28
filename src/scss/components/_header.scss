@@ -30,3 +30,19 @@
     }
   }
 }
+
+@media (max-width: 674px) {
+  .header {
+    padding: 20px 0;
+
+    &__logo {
+      img {
+        display: none;
+      }
+
+      p {
+        display: none;
+      }
+    }
+  }
+}

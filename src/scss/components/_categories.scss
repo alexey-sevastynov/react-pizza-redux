@@ -29,3 +29,28 @@
     }
   }
 }
+
+@media (max-width: 840px) {
+  .categories {
+    ul {
+      flex-wrap: wrap;
+      justify-content: start;
+
+      li {
+        margin: 5px;
+      }
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .categories {
+    ul {
+      li {
+        padding: 12px 20px;
+
+        margin: 3px;
+      }
+    }
+  }
+}
