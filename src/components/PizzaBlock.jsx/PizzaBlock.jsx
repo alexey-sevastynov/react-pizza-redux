@@ -96,7 +96,7 @@ function PizzaBlock({
           onClick={onAddPizza}
         >
           {svgPlus}
-          <span>Добавить</span>
+          <span>Add</span>
           {addedCount && <i>{addedCount}</i>}
         </button>
       </div>
