@@ -80,7 +80,7 @@ function MainPage({ categoryNames, sortNames, onClickSortType }) {
                   {...pizza}
                 />
               ))
-            : Array(pizzas.length)
+            : Array(pizzas.length === 0 ? 6 : pizzas.length)
                 .fill(0)
                 .map((_, index) => <MyLoader key={index} />)}
         </div>

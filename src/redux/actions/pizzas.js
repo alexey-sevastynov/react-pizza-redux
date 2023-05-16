@@ -7,6 +7,7 @@ export const setLoaded = (payload) => ({
 
 export const fetchPizzas = (sortBy, category) => (dispatch) => {
   dispatch({ type: "SET_LOADED", payload: false });
+
   axios
     .get(
       `https://pizzas-api-ait8.onrender.com/pizzas?${
